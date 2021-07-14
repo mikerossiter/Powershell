@@ -1,0 +1,4 @@
+# Script for checking the version of software on a remote machine. This example checks for Chrome. You would need to check the machine name in your circumstances.
+Get-ADComputer -Filter * | where {​​$_.name -like "????"}​​ | Select name | Export-Csv -Path C:\pcs.csv -NoTypeInformation
+
+Get-CimInstance -ClassName win32_product -ComputerName ( Get-Content c:\pcs.txt ) | where {​​$_.name -like "*Chrome*"}​​ | Select PScomputername,name,version
